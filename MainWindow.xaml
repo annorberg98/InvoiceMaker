@@ -1,0 +1,71 @@
+﻿<Window x:Class="InvoiceMaker.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Assignment6"
+        mc:Ignorable="d"
+        Title="Invoice Maker" Height="613.525" Width="973.077">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="127*"/>
+            <ColumnDefinition Width="838*"/>
+        </Grid.ColumnDefinitions>
+        <DockPanel Grid.ColumnSpan="2">
+            <Menu DockPanel.Dock="Top" Height="577">
+                <MenuItem Header="_File">
+                    <MenuItem x:Name="MenuItemOpen" Header="_Open" Click="BtnOpen_Click"/>
+                    <MenuItem x:Name="MenuItemImage" Header="Upload image" Click="MenuItemImage_Click" />
+                </MenuItem>
+                <MenuItem Header="_Discount" x:Name="MenuItemDiscount">
+                    <MenuItem x:Name="MenuItemDiscountSet" Header="_Set Discount" Click="BtnDiscount_Click"/>
+                    <MenuItem x:Name="MenuItemDiscountRemove" Header="_Remove Discount" Click="MenuItemDiscountRemove_Click"/>
+                </MenuItem>
+            </Menu>
+        </DockPanel>
+        <Label x:Name="lblInvSender" Content="Sender of invoice" HorizontalAlignment="Left" Margin="10,27,0,0" VerticalAlignment="Top" Height="72" Width="235" FontSize="20" Grid.ColumnSpan="2"/>
+        <Image x:Name="imgLogo" Margin="20,104,720,350" Grid.ColumnSpan="2"/>
+        <ListView x:Name="lvProducts" HorizontalAlignment="Left" Height="263" Margin="31,238,0,0" VerticalAlignment="Top" Width="591" AlternationCount="1000" Grid.ColumnSpan="2">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn
+                            Header="Item"
+                            DisplayMemberBinding="{Binding (ItemsControl.AlternationIndex),
+                            RelativeSource={RelativeSource AncestorType=ListViewItem}}" />
+                    <GridViewColumn Header="Description" DisplayMemberBinding="{Binding Description}"/>
+                    <GridViewColumn Header="Quantity" DisplayMemberBinding="{Binding Quantity}"/>
+                    <GridViewColumn Header="Price" DisplayMemberBinding="{Binding Price}"/>
+                    <GridViewColumn Header="Tax (%)" DisplayMemberBinding="{Binding Tax}"/>
+                    <GridViewColumn Header="Total Tax" DisplayMemberBinding="{Binding TotalTax}"/>
+                    <GridViewColumn Header="Total Price" DisplayMemberBinding="{Binding TotalPrice}"/>
+                </GridView>
+            </ListView.View>
+        </ListView>
+
+        <Label x:Name="lblInvNum" Content="Invoice Number" HorizontalAlignment="Left" Margin="196,36,0,0" VerticalAlignment="Top" Grid.Column="1"/>
+        <TextBox x:Name="txtInvNum" HorizontalAlignment="Left" Height="23" Margin="295,40,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="200" IsEnabled="False" Grid.Column="1"/>
+
+        <Label x:Name="lblInvDate" Content="Invoice Date" HorizontalAlignment="Left" Margin="196,82,0,0" VerticalAlignment="Top" Grid.Column="1"/>
+
+        <ListBox x:Name="txtBoxInvAddress" HorizontalAlignment="Left" Height="137" Margin="531,40,0,0" VerticalAlignment="Top" Width="267" Grid.Column="1"/>
+
+        <Label x:Name="lblInvDue" Content="Invoice Due Date" HorizontalAlignment="Left" Margin="196,113,0,0" VerticalAlignment="Top" Grid.Column="1"/>
+
+        <Label Content="Address" HorizontalAlignment="Left" Margin="520,233,0,0" VerticalAlignment="Top" Grid.Column="1"/>
+        <Label Content="Phone" HorizontalAlignment="Left" Margin="627,233,0,0" VerticalAlignment="Top" Grid.Column="1"/>
+        <Label Content="Webpage" HorizontalAlignment="Left" Margin="745,233,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.469,-0.215" Grid.Column="1"/>
+        <Label x:Name="txtPhone" Content="" HorizontalAlignment="Left" Margin="627,264,0,0" VerticalAlignment="Top" Grid.Column="1"/>
+        <Label x:Name="txtWebpage" Content="" HorizontalAlignment="Left" Margin="726,264,0,0" VerticalAlignment="Top" Grid.Column="1"/>
+        <Label x:Name="txtAddress" Content="" HorizontalAlignment="Left" Margin="520,264,0,0" VerticalAlignment="Top" Width="102" Height="66" Grid.Column="1"/>
+
+        <Label x:Name="lblToPay" Content="Amount to pay" HorizontalAlignment="Left" Margin="31,501,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="lblDiscount" Content="Discount" HorizontalAlignment="Left" Margin="31,532,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="txtToPay" Content="" HorizontalAlignment="Left" Margin="451,501,0,0" VerticalAlignment="Top" Grid.Column="1"/>
+        <Label x:Name="txtDiscount" Content="" HorizontalAlignment="Left" Margin="451,532,0,0" VerticalAlignment="Top" Grid.Column="1"/>
+        <Button x:Name="BtnSave_Changes" Content="Save changes" HorizontalAlignment="Left" Margin="296,162,0,0" VerticalAlignment="Top" Width="82" Height="28" Visibility="Hidden" IsEnabled="False" Click="BtnSave_Changes_Click" Grid.Column="1"/>
+
+
+        <DatePicker Height="25" HorizontalAlignment="Left" Margin="296,82,0,0" x:Name="StartDatepicker" VerticalAlignment="Top" Width="115" SelectedDateChanged="StartDatepicker_SelectedDateChanged" Grid.Column="1"/>
+        <DatePicker Height="25" HorizontalAlignment="Left" Margin="296,114,0,0" x:Name="DueDatepicker" VerticalAlignment="Top" Width="115" SelectedDateChanged="DueDatepicker_SelectedDateChanged" Grid.Column="1"/>
+    </Grid>
+</Window>
